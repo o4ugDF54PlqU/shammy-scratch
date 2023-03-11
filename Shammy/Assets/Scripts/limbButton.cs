@@ -5,11 +5,12 @@ using UnityEngine;
 public class limbButton : MonoBehaviour
 {
     public int limb;
-    private Color currentColor;
+    public Color currentColor;
     // Start is called before the first frame update
     void Start()
     {
         GetComponent<SpriteRenderer>().color = Color.red;
+        currentColor = Color.red;
     }
 
     // Update is called once per frame
@@ -26,7 +27,6 @@ public class limbButton : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        currentColor = GetComponent<SpriteRenderer>().color;
         GetComponent<SpriteRenderer>().color = Color.yellow;
     }
 

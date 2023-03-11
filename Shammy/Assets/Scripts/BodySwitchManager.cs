@@ -11,9 +11,9 @@ public class BodySwitchManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        buttons[0].color = Color.green;
         buttonsStatic = buttons;
         backgroundsStatic = backgrounds;
+        changeButtonColor(buttonsStatic[0], Color.green);
     }
 
     // Update is called once per frame
@@ -30,7 +30,7 @@ public class BodySwitchManager : MonoBehaviour
     public static void changeLimb(int limb)
     {
         clear();
-        buttonsStatic[limb].color = Color.green;
+        changeButtonColor(buttonsStatic[limb], Color.green);
         backgroundsStatic[limb].SetActive(true);
     }
 
@@ -38,11 +38,17 @@ public class BodySwitchManager : MonoBehaviour
     {
         foreach (var button in buttonsStatic)
         {
-            button.color = Color.red;
+            changeButtonColor(button, Color.red);
         }
         foreach (var background in backgroundsStatic)
         {
             background.SetActive(false);
         }
+    }
+
+    private static void changeButtonColor(SpriteRenderer button, Color newColor)
+    {
+        button.color = newColor;
+        button.gameObject.GetComponent<limbButton>().currentColor = newColor;
     }
 }
