@@ -5,6 +5,7 @@ using UnityEngine;
 public class limbButton : MonoBehaviour
 {
     public int limb;
+    private Color currentColor;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,5 +22,16 @@ public class limbButton : MonoBehaviour
     {
         BodySwitchManager.changeLimb(limb);
         Debug.Log("Square clicked!");
+    }
+
+    private void OnMouseEnter()
+    {
+        currentColor = GetComponent<SpriteRenderer>().color;
+        GetComponent<SpriteRenderer>().color = Color.yellow;
+    }
+
+    private void OnMouseExit()
+    {
+        GetComponent<SpriteRenderer>().color = currentColor;
     }
 }
