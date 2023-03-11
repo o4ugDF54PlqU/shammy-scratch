@@ -205,7 +205,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 732792327}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &355188439
 GameObject:
@@ -217,8 +217,8 @@ GameObject:
   m_Component:
   - component: {fileID: 355188441}
   - component: {fileID: 355188440}
-  - component: {fileID: 355188442}
   - component: {fileID: 355188443}
+  - component: {fileID: 355188442}
   m_Layer: 0
   m_Name: leftarmButton
   m_TagString: Untagged
@@ -305,6 +305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 347dd3b137634f74c9117083ebad6974, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  limb: 1
 --- !u!61 &355188443
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -447,6 +448,9 @@ MonoBehaviour:
   buttons:
   - {fileID: 1491480450}
   - {fileID: 355188440}
+  backgrounds:
+  - {fileID: 744271883}
+  - {fileID: 40513903}
 --- !u!4 &575772978
 Transform:
   m_ObjectHideFlags: 0
@@ -475,7 +479,7 @@ GameObject:
   - component: {fileID: 732792327}
   - component: {fileID: 732792326}
   m_Layer: 0
-  m_Name: BGmanager
+  m_Name: Backgrounds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -505,8 +509,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 40513905}
   - {fileID: 744271885}
+  - {fileID: 40513905}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -592,7 +596,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 732792327}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1491480449
 GameObject:
@@ -718,3 +722,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 347dd3b137634f74c9117083ebad6974, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  limb: 0

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class limbButton : MonoBehaviour
 {
+    public int limb;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,8 +19,7 @@ public class limbButton : MonoBehaviour
 
     private void OnMouseDown()
     {
-        BodySwitchManager.clearButtons();
-        GetComponent<SpriteRenderer>().color = Color.green;
+        BodySwitchManager.changeLimb(limb);
         Debug.Log("Square clicked!");
     }
 }
