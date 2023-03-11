@@ -5,6 +5,7 @@ using UnityEngine;
 public class itchySpot : MonoBehaviour
 {
     public int pleasurePerSecond;
+    public int bloodLossPerSecond;
     private bool scratching = false;
     // Start is called before the first frame update
     void Start()
@@ -23,6 +24,7 @@ public class itchySpot : MonoBehaviour
         if (scratching)
         {
             PleasureBarManager.addPleasure(pleasurePerSecond * Time.deltaTime);
+            BloodLossBarManager.addBloodLoss(bloodLossPerSecond * Time.deltaTime);
         }
     }
 

@@ -7,7 +7,8 @@ public class PleasureBarManager : MonoBehaviour
 {
     public static Image PleasureMeter;
     public float maxPleasure;
-    public static float pleasure = 0;
+    public float pleasureLossPerSecond;
+    public static float pleasure = 50;
 
     // value should be between 0 to 1</param>
     public static void setBarValue(float value)
@@ -40,5 +41,10 @@ public class PleasureBarManager : MonoBehaviour
     void Update()
     {
         setBarValue(pleasure/maxPleasure);
+    }
+
+    void FixedUpdate()
+    {
+        pleasure -= pleasureLossPerSecond * Time.deltaTime;
     }
 }
