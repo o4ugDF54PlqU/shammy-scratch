@@ -67,6 +67,7 @@ public class itchySpot : MonoBehaviour
     {
         if (viewing)
         {
+            PleasureBarManager.addPleasure(pleasurePerSecond);
             scratching = true;
             Debug.Log("scratchy scratch");
         }
