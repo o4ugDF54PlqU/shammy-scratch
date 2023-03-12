@@ -5,7 +5,6 @@ using UnityEngine;
 public class itchySpot : MonoBehaviour
 {
     public int pleasurePerSecond;
-    public int bloodLossPerSecond;
     float itchiness;
     bool isItchy;
     bool viewing;
@@ -29,7 +28,7 @@ public class itchySpot : MonoBehaviour
             if (viewing && scratching)
             {
                 PleasureBarManager.addPleasure(pleasurePerSecond * Time.deltaTime);
-                BloodLossBarManager.addBloodLoss(bloodLossPerSecond * Time.deltaTime);
+                BloodLossBarManager.addBloodLoss(BloodLossBarManager.bloodLossPerSecond * Time.deltaTime);
                 itchiness -= Time.deltaTime;
                 //Debug.Log(itchiness);
 
@@ -44,7 +43,7 @@ public class itchySpot : MonoBehaviour
             }
             else
             {
-                PleasureBarManager.addPleasure(-0.25f * pleasurePerSecond * Time.deltaTime);
+                PleasureBarManager.addPleasure(-1f * pleasurePerSecond * Time.deltaTime);
             }
         }
     }
@@ -67,7 +66,7 @@ public class itchySpot : MonoBehaviour
     {
         if (viewing)
         {
-            PleasureBarManager.addPleasure(pleasurePerSecond);
+            //PleasureBarManager.addPleasure(pleasurePerSecond);
             scratching = true;
             Debug.Log("scratchy scratch");
         }

@@ -10,7 +10,7 @@ public class PleasureBarManager : MonoBehaviour
     public float maxPleasure;
     public static float maxPleasureStatic;
     public float pleasureLossPerSecond;
-    public static float pleasure = 50;
+    static float pleasure = 50;
 
     // value should be between 0 to 1</param>
     public static void setBarValue(float value)
@@ -52,7 +52,7 @@ public class PleasureBarManager : MonoBehaviour
 
     void FixedUpdate()
     {
-        pleasure -= pleasureLossPerSecond * Time.deltaTime;
+        //pleasure -= pleasureLossPerSecond * Time.deltaTime;
         if (pleasure <= 0)
         {
             SceneManager.LoadScene("Lose");

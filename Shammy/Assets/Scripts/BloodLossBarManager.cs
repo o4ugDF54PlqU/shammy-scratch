@@ -8,6 +8,7 @@ public class BloodLossBarManager : MonoBehaviour
 {
     public static Image BloodLossMeter;
     public float maxBloodLoss;
+    public static int bloodLossPerSecond;
     public static float maxBloodLossStatic;
     public static float BloodLoss = 0;
 
@@ -32,6 +33,7 @@ public class BloodLossBarManager : MonoBehaviour
     public static void addBloodLoss(float value)
     {
         BloodLoss += value;
+
         if (BloodLoss >= maxBloodLossStatic)
         {
             SceneManager.LoadScene("Victory");
@@ -40,6 +42,7 @@ public class BloodLossBarManager : MonoBehaviour
 
     private void Start()
     {
+        bloodLossPerSecond = 4;
         BloodLossMeter = GetComponent<Image>();
         maxBloodLossStatic = maxBloodLoss;
         BloodLoss = 0;
@@ -47,6 +50,7 @@ public class BloodLossBarManager : MonoBehaviour
 
     void Update()
     {
+        //addBloodLoss(-3f * BloodLossBarManager.bloodLossPerSecond * Time.deltaTime);
         setBarValue(BloodLoss/maxBloodLoss);
     }
 }
