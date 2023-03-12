@@ -24,7 +24,6 @@ public class itchySpot : MonoBehaviour
     {
         if (canScratch && scratching)
         {
-            PleasureBarManager.addPleasure(pleasurePerSecond * Time.deltaTime);
             BloodLossBarManager.addBloodLoss(bloodLossPerSecond * Time.deltaTime);
         }
     }
@@ -40,6 +39,7 @@ public class itchySpot : MonoBehaviour
     {
         if (canScratch)
         {
+            PleasureBarManager.addPleasure(pleasurePerSecond);
             scratching = true;
             Debug.Log("scratchy scratch");
         }

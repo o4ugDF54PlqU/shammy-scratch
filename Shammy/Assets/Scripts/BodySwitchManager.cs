@@ -12,8 +12,8 @@ public class BodySwitchManager : MonoBehaviour
     void Start()
     {
         instance = this;
-        changeButtonColor(buttons[0], Color.green);
-        changeLimb(0);
+        // changeButtonColor(buttons[0], Color.green);
+        // changeLimb(0);
     }
 
     // Update is called once per frame
