@@ -42,6 +42,7 @@ public class BloodLossBarManager : MonoBehaviour
     {
         BloodLossMeter = GetComponent<Image>();
         maxBloodLossStatic = maxBloodLoss;
+        BloodLoss = 0;
     }
 
     void Update()
