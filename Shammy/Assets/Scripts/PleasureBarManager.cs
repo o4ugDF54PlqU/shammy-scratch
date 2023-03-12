@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PleasureBarManager : MonoBehaviour
 {
     public static Image PleasureMeter;
     public float maxPleasure;
+    public static float maxPleasureStatic;
     public float pleasureLossPerSecond;
     public static float pleasure = 50;
 
@@ -31,11 +33,16 @@ public class PleasureBarManager : MonoBehaviour
     public static void addPleasure(float value)
     {
         pleasure += value;
+        if (pleasure > maxPleasureStatic)
+        {
+            pleasure = maxPleasureStatic;
+        }
     }
 
     private void Start()
     {
         PleasureMeter = GetComponent<Image>();
+        maxPleasureStatic = maxPleasure;
     }
 
     void Update()
@@ -46,5 +53,9 @@ public class PleasureBarManager : MonoBehaviour
     void FixedUpdate()
     {
         pleasure -= pleasureLossPerSecond * Time.deltaTime;
+        if (pleasure <= 0)
+        {
+            SceneManager.LoadScene("Lose");
+        }
     }
 }
