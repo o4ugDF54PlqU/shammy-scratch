@@ -7,6 +7,9 @@ public class BodySwitchManager : MonoBehaviour
     public SpriteRenderer[] buttons;
     public GameObject[] backgrounds;
     public itchySpot[] spots;
+    itchySpot lastScratchedSpot;
+
+    float itchCooldown;
     public static BodySwitchManager instance;
     // Start is called before the first frame update
     void Start()
@@ -14,12 +17,35 @@ public class BodySwitchManager : MonoBehaviour
         instance = this;
         changeButtonColor(buttons[0], Color.green);
         changeLimb(0);
+        itchCooldown = -1.0f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        itchCooldown -= Time.deltaTime;
+
+        if(0 >= itchCooldown)
+        {
+            Debug.Log("set itchy");
+            if(null == lastScratchedSpot)
+            {
+                spots[Random.Range(0, spots.Length)].SetItchy();
+            }
+            else
+            {
+                itchySpot nextSpot = spots[Random.Range(0, spots.Length)];
+
+                while(lastScratchedSpot == nextSpot)
+                {
+                    nextSpot = spots[Random.Range(0, spots.Length)];
+                }
+
+                nextSpot.SetItchy();
+            }
+            
+            itchCooldown = 6.0f;
+        }
     }
 
     void OnMessageReceived(string message)
@@ -47,10 +73,15 @@ public class BodySwitchManager : MonoBehaviour
             background.SetActive(false);
         }
 
-        for(int a = 0; a < spots.Length; a++)
+        for(int a = 0; spots.Length > a; a++)
         {
             spots[a].ActivateScratch(false);
         }
+    }
+
+    public void SetLastScratchedSpot(itchySpot spot)
+    {
+        lastScratchedSpot = spot;
     }
 
     private static void changeButtonColor(SpriteRenderer button, Color newColor)

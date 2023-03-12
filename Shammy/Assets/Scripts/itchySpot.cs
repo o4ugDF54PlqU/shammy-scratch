@@ -6,12 +6,14 @@ public class itchySpot : MonoBehaviour
 {
     public int pleasurePerSecond;
     public int bloodLossPerSecond;
-    bool canScratch;
+    float itchiness;
+    bool isItchy;
+    bool viewing;
     private bool scratching = false;
     // Start is called before the first frame update
     void Start()
     {
-        canScratch = false;
+        viewing = false;
     }
 
     // Update is called once per frame
@@ -22,23 +24,48 @@ public class itchySpot : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (canScratch && scratching)
+        if (isItchy)
         {
-            PleasureBarManager.addPleasure(pleasurePerSecond * Time.deltaTime);
-            BloodLossBarManager.addBloodLoss(bloodLossPerSecond * Time.deltaTime);
+            if (viewing && scratching)
+            {
+                PleasureBarManager.addPleasure(pleasurePerSecond * Time.deltaTime);
+                BloodLossBarManager.addBloodLoss(bloodLossPerSecond * Time.deltaTime);
+                itchiness -= Time.deltaTime;
+                //Debug.Log(itchiness);
+
+                if (0 >= itchiness)
+                {
+                    Debug.Log("set not itchy");
+                    isItchy = false;
+                    GetComponent<SpriteRenderer>().enabled = false;
+                    BodySwitchManager.instance.SetLastScratchedSpot(this);
+                    return;
+                }
+            }
+            else
+            {
+                PleasureBarManager.addPleasure(-0.25f * pleasurePerSecond * Time.deltaTime);
+            }
         }
     }
 
-    public void ActivateScratch(bool isActive)
+    public void SetItchy()
+    {
+        isItchy = true;
+        itchiness = 4.0f;
+        GetComponent<SpriteRenderer>().enabled = viewing;
+    }
+
+    public void ActivateScratch(bool willView)
     {
         scratching = false;
-        canScratch = isActive;
-        GetComponent<SpriteRenderer>().enabled = isActive;
+        viewing = willView;
+        GetComponent<SpriteRenderer>().enabled = isItchy && willView;
     }
 
     private void OnMouseEnter()
     {
-        if (canScratch)
+        if (viewing)
         {
             scratching = true;
             Debug.Log("scratchy scratch");
