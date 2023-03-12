@@ -46,7 +46,7 @@ public class itchySpot : MonoBehaviour
         }
         else
         {
-            PleasureBarManager.addPleasure(-1f * pleasurePerSecond * Time.deltaTime);
+            PleasureBarManager.addPleasure(-4f * pleasurePerSecond * Time.deltaTime);
         }
     }
 
