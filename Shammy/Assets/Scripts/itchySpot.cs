@@ -23,28 +23,29 @@ public class itchySpot : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (isItchy)
+        if (!isItchy)
         {
-            if (viewing && scratching)
-            {
-                PleasureBarManager.addPleasure(pleasurePerSecond * Time.deltaTime);
-                BloodLossBarManager.addBloodLoss(BloodLossBarManager.bloodLossPerSecond * Time.deltaTime);
-                itchiness -= Time.deltaTime;
-                //Debug.Log(itchiness);
+            return;
+        }
 
-                if (0 >= itchiness)
-                {
-                    Debug.Log("set not itchy");
-                    isItchy = false;
-                    GetComponent<SpriteRenderer>().enabled = false;
-                    BodySwitchManager.instance.SetLastScratchedSpot(this);
-                    return;
-                }
-            }
-            else
+        if (viewing && scratching)
+        {
+            BloodLossBarManager.addBloodLoss(bloodLossPerSecond * Time.deltaTime);
+            itchiness -= Time.deltaTime;
+            //Debug.Log(itchiness);
+
+            if (0 >= itchiness)
             {
-                PleasureBarManager.addPleasure(-1f * pleasurePerSecond * Time.deltaTime);
+                Debug.Log("set not itchy");
+                isItchy = false;
+                GetComponent<SpriteRenderer>().enabled = false;
+                BodySwitchManager.instance.SetLastScratchedSpot(this);
+                return;
             }
+        }
+        else
+        {
+            PleasureBarManager.addPleasure(-0.25f * pleasurePerSecond * Time.deltaTime);
         }
     }
 
@@ -64,12 +65,13 @@ public class itchySpot : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        if (viewing)
+        if (!viewing || !isItchy)
         {
-            //PleasureBarManager.addPleasure(pleasurePerSecond);
-            scratching = true;
-            Debug.Log("scratchy scratch");
+            return;
         }
+        PleasureBarManager.addPleasure(pleasurePerSecond);
+        scratching = true;
+        Debug.Log("scratchy scratch");
     }
 
     private void OnMouseExit()
