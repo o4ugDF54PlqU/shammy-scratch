@@ -31,7 +31,7 @@ public class itchySpot : MonoBehaviour
         if (viewing && scratching)
         {
             BloodLossBarManager.addBloodLoss(BloodLossBarManager.bloodLossPerSecond * Time.deltaTime);
-            PleasureBarManager.addPleasure(pleasurePerSecond * Time.deltaTime);
+            //PleasureBarManager.addPleasure(pleasurePerSecond * Time.deltaTime);
             itchiness -= Time.deltaTime;
             //Debug.Log(itchiness);
 
@@ -53,7 +53,7 @@ public class itchySpot : MonoBehaviour
     public void SetItchy()
     {
         isItchy = true;
-        itchiness = 4.0f;
+        itchiness = 2.0f;
         GetComponent<SpriteRenderer>().enabled = viewing;
     }
 
@@ -70,7 +70,7 @@ public class itchySpot : MonoBehaviour
         {
             return;
         }
-        //PleasureBarManager.addPleasure(pleasurePerSecond);
+        PleasureBarManager.addPleasure(pleasurePerSecond);
         scratching = true;
         Debug.Log("scratchy scratch");
     }
