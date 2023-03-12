@@ -6,14 +6,14 @@ public class BodySwitchManager : MonoBehaviour
 {
     public SpriteRenderer[] buttons;
     public GameObject[] backgrounds;
-    private static SpriteRenderer[] buttonsStatic;
-    private static GameObject[] backgroundsStatic;
+    public itchySpot[] spots;
+    public static BodySwitchManager instance;
     // Start is called before the first frame update
     void Start()
     {
-        buttonsStatic = buttons;
-        backgroundsStatic = backgrounds;
-        changeButtonColor(buttonsStatic[0], Color.green);
+        instance = this;
+        changeButtonColor(buttons[0], Color.green);
+        changeLimb(0);
     }
 
     // Update is called once per frame
@@ -27,28 +27,37 @@ public class BodySwitchManager : MonoBehaviour
         Debug.Log("Received message: " + message);
     }
 
-    public static void changeLimb(int limb)
+    public void changeLimb(int limb)
     {
         clear();
-        changeButtonColor(buttonsStatic[limb], Color.green);
-        backgroundsStatic[limb].SetActive(true);
+        //Debug.Log("calling changeButtonColor");
+        changeButtonColor(buttons[limb], Color.green);
+        backgrounds[limb].SetActive(true);
+        spots[limb].ActivateScratch(true);
     }
 
-    public static void clear()
+    public void clear()
     {
-        foreach (var button in buttonsStatic)
+        foreach (var button in buttons)
         {
             changeButtonColor(button, Color.red);
         }
-        foreach (var background in backgroundsStatic)
+        foreach (var background in backgrounds)
         {
             background.SetActive(false);
+        }
+
+        for(int a = 0; a < spots.Length; a++)
+        {
+            spots[a].ActivateScratch(false);
         }
     }
 
     private static void changeButtonColor(SpriteRenderer button, Color newColor)
     {
+        //Debug.Log(button.color);
         button.color = newColor;
+        //Debug.Log(button.color);
         button.gameObject.GetComponent<limbButton>().currentColor = newColor;
     }
 }

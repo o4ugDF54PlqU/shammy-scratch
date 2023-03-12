@@ -9,8 +9,8 @@ public class limbButton : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GetComponent<SpriteRenderer>().color = Color.red;
-        currentColor = Color.red;
+        /*GetComponent<SpriteRenderer>().color = Color.red;
+        currentColor = Color.red;*/
     }
 
     // Update is called once per frame
@@ -21,7 +21,7 @@ public class limbButton : MonoBehaviour
 
     private void OnMouseDown()
     {
-        BodySwitchManager.changeLimb(limb);
+        BodySwitchManager.instance.changeLimb(limb);
         Debug.Log("Square clicked!");
     }
 
