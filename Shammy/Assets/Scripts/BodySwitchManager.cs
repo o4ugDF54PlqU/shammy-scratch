@@ -16,7 +16,7 @@ public class BodySwitchManager : MonoBehaviour
     {
         instance = this;
         //changeButtonColor(buttons[0], Color.green);
-        changeLimb(0);
+        // changeLimb(0);
         itchCooldown = -1.0f;
     }
 
